@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>我的文章</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="commons/top::topbar"/>
+<div class="container">
+    <div class="row clearfix">
+        <div th:replace="commons/side::sidebar"/>
+        <div class="col-md-6 column">
+            <div class="jumbotron well">
+                <p th:each="blog: ${aList}">
+                    <a th:href="@{/editArticle/}+${blog.id}" class="">
+                        [[${blog.title}]]
+                    </a>
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

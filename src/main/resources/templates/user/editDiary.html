@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>编辑文章</title>
+    <title>编辑日记</title>
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../kindeditor-master/themes/default/default.css" rel="stylesheet"/>
     <script charset="utf-8" src="../kindeditor-master/kindeditor-all-min.js"></script>
@@ -20,25 +20,24 @@
         });
     </script>
 </head>
-<body style="background-color:#EBEBEB">
+<body style="background-color: #EBEBEB">
 
 <div th:replace="commons/top::topbar"/>
 <div class="container">
     <div class="row clearfix">
         <div th:replace="commons/side::sidebar"/>
         <div class="col-md-10 column">
-            <form th:action="@{/updateArticle(id=${blog.id})}" method="post">
+            <form th:action="@{/updateDiary(id=${diary.id})}" method="post">
                 <div>
                     <input type="text" class="form-control" name="title" style="width: 100%"
-                           th:value="${blog.title}"/>
+                           th:value="${diary.title}"/>
                 </div>
                 <br>
                 <textarea name="context" style="width: 100%;height: 400px">
-                     <p>[[${blog.context}]]</p>
+                     <p>[[${diary.context}]]</p>
                 </textarea>
-                <button type="submit" class="btn btn-primary">发表</button>
-                <button type="reset" class="btn btn-primary">清空</button>
-                <a class="btn btn-primary" th:href="@{/deleteArticle(id=${blog.id})}">删除</a>
+                <button type="submit" class="btn btn-success">发表</button>
+                <a class="btn btn-success" th:href="@{/deleteDiary(id=${diary.id})}">删除</a>
             </form>
 
         </div>

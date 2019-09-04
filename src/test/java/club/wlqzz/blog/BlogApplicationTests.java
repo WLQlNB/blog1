@@ -1,5 +1,6 @@
 package club.wlqzz.blog;
 
+import club.wlqzz.blog.pojo.Diary;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,4 +14,11 @@ public class BlogApplicationTests {
     public void contextLoads() {
     }
 
+    @Test
+    public void test1(){
+        Diary diary=new Diary();
+        diary.setTitle("aa");
+        System.out.println(diary.getTitle());
+        System.out.println(diary);
+    }
 }

@@ -2,11 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>编辑文章</title>
+    <title>写博客</title>
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../kindeditor-master/themes/default/default.css" rel="stylesheet"/>
-    <script charset="utf-8" src="../kindeditor-master/kindeditor-all-min.js"></script>
-    <script charset="utf-8" src="../kindeditor-master/lang/zh-CN.js"></script>
+    <link href="kindeditor-master/themes/default/default.css" rel="stylesheet"/>
+    <script charset="utf-8" src="kindeditor-master/kindeditor-all-min.js"></script>
+    <script charset="utf-8" src="kindeditor-master/lang/zh-CN.js"></script>
     <script type="text/javascript">
         var editor;
         KindEditor.ready(function (K) {
@@ -20,30 +20,32 @@
         });
     </script>
 </head>
-<body style="background-color:#EBEBEB">
-
+<body style="background-color: #EBEBEB">
 <div th:replace="commons/top::topbar"/>
 <div class="container">
     <div class="row clearfix">
-        <div th:replace="commons/side::sidebar"/>
-        <div class="col-md-10 column">
-            <form th:action="@{/updateArticle(id=${blog.id})}" method="post">
+        <div class="col-md-12 column">
+            <div class="page-header">
+                <h1>写日记</h1>
+            </div>
+            <form action="#" th:action="@{/addDiary}" method="post">
                 <div>
-                    <input type="text" class="form-control" name="title" style="width: 100%"
-                           th:value="${blog.title}"/>
+                    <input type="text" class="form-control" name="title" style="width: 100%" placeholder="输入文章标题">
                 </div>
                 <br>
-                <textarea name="context" style="width: 100%;height: 400px">
-                     <p>[[${blog.context}]]</p>
-                </textarea>
-                <button type="submit" class="btn btn-primary">发表</button>
-                <button type="reset" class="btn btn-primary">清空</button>
-                <a class="btn btn-primary" th:href="@{/deleteArticle(id=${blog.id})}">删除</a>
+                <div>
+                    <textarea class="form-control" name="context" style="width: 100%;height: 460px;"
+                              placeholder="输入文章内容">
+                    </textarea>
+                </div>
+                <input type="submit" class="btn btn-success" value="发表">
+                <input type="reset" class="btn btn-success" value="清空">
             </form>
 
         </div>
     </div>
 </div>
+
 
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>

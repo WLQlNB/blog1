@@ -5,8 +5,8 @@
     <title>Title</title>
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-<div class="col-md-2 column" th:fragment="sidebar">
+<body >
+<div class="col-md-2 column" th:fragment="sidebar" style="background-color: #F4A460">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">
@@ -16,11 +16,21 @@
         <div class="panel-body">
             <a href="#" th:href="@{/article}">我的文章</a>
         </div>
+
+
+
+        <div class="panel-body">
+            <a href="#" th:href="@{/myDiary}">我的日记</a>
+        </div>
+
         <div class="panel-body">
             <a href="">我关注的人</a>
         </div>
         <div class="panel-footer">
             <a href="">我的问答</a>
+        </div>
+        <div class="panel-body">
+            <a href="#" th:href="@{/writeDiary}">写日记</a>
         </div>
     </div>
 </div>

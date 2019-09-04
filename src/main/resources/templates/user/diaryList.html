@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>我的文章</title>
+    <title>我的日记</title>
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body style="background-color: #EBEBEB">
@@ -13,14 +13,13 @@
         <div class="col-md-6 column">
             <div class="jumbotron well">
                 <div>
-                    <h3>行业交流</h3>
-                    <p th:each="blog: ${aList}">
-                        <a th:href="@{/editArticle/}+${blog.id}" class="">
-                            [[${blog.title}]]
+                    <h3>我的日记</h3>
+                    <p th:each="diary: ${diaryList}">
+                        <a th:href="@{/editDiary/}+${diary.id}" class="">
+                            [[${diary.title}]]
                         </a>
                     </p>
                 </div>
-
             </div>
 
         </div>

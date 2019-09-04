@@ -1,14 +1,18 @@
 package club.wlqzz.blog.controller;
 
+import club.wlqzz.blog.pojo.Blog;
 import club.wlqzz.blog.pojo.User;
+import club.wlqzz.blog.service.BlogService;
 import club.wlqzz.blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Map;
 
 
@@ -17,6 +21,8 @@ public class LoginController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private BlogService blogService;
 
     @PostMapping("/loginCheck")
     public String login(@RequestParam("id") Integer id,
@@ -50,7 +56,9 @@ public class LoginController {
     }
 
     @GetMapping(value = {"/", "/main"})
-    public String toMain() {
+    public String toMain(Model model) throws Exception {
+        List<Blog> blogList=blogService.selectAll();
+        model.addAttribute("blogList",blogList);
         return "main";
     }
 
@@ -59,6 +67,11 @@ public class LoginController {
         if (session.getAttribute("loginUser") != null) {
             session.invalidate();
         }
-        return "main";
+        return "redirect:/main";
+    }
+
+    @GetMapping("/t")
+    public String t(){
+        return "t";
     }
 }

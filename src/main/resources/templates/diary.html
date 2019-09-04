@@ -2,29 +2,33 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>我的文章</title>
+    <title>我的成长</title>
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body style="background-color: #EBEBEB">
 <div th:replace="commons/top::topbar"/>
 <div class="container">
     <div class="row clearfix">
-        <div th:replace="commons/side::sidebar"/>
-        <div class="col-md-6 column">
-            <div class="jumbotron well">
-                <div>
-                    <h3>行业交流</h3>
-                    <p th:each="blog: ${aList}">
-                        <a th:href="@{/editArticle/}+${blog.id}" class="">
-                            [[${blog.title}]]
-                        </a>
-                    </p>
-                </div>
-
-            </div>
-
+        <div class="col-md-2 column">
         </div>
+        <div class="col-md-6 column">
 
+            <div>
+                <h4 class="bg-primary" align="center">
+                    我的成长
+                </h4>
+            </div>
+            <br>
+            <div class="col-md-10 column">
+                <p th:each="diary: ${diaryList}">
+                    <a th:href="@{/lookDiary/}+${diary.id}" class="">
+                        [[${diary.title}]]
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4 column">
+        </div>
     </div>
 </div>
 

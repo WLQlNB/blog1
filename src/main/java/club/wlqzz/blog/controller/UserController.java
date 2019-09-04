@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -32,6 +33,7 @@ public class UserController {
     public String lookMyArticle(HttpSession session, Model model) throws Exception {
         User user = (User) session.getAttribute("loginUser");
         List<Blog> aList = blogService.selectAllUser(user.getId());
+        Collections.reverse(aList);
         model.addAttribute("aList", aList);
         return "user/article";
     }

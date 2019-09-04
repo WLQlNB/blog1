@@ -20,7 +20,7 @@
         });
     </script>
 </head>
-<body>
+<body style="background-color: #EBEBEB">
 <div th:replace="commons/top::topbar"/>
 <div class="container">
     <div class="row clearfix">
@@ -38,14 +38,19 @@
                               placeholder="输入文章内容">
                     </textarea>
                 </div>
-                <input type="submit" class="btn btn-success" value="发表">
-                <input type="reset" class="btn btn-success" value="清空">
+                <input type="submit" class="btn btn-primary" value="发表">
+                <input type="reset" class="btn btn-primary" value="清空" onclick="ClearInput()">
             </form>
 
         </div>
     </div>
 </div>
 
+<script type="text/javascript">
+    function ClearInput(response) {
+        KindEditor.instances[0].html("");
+    }
+</script>
 
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>

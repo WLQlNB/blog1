@@ -22,7 +22,7 @@ public interface BlogMapper {
     @Delete("delete from t_blog where id=#{id}")
     void delete(Integer id) throws Exception;
 
-    @Update("update t_blog set title=#{title},context=#{context} where id=#{id}")
+    @Update("update t_blog set title=#{title},context=#{context},count=#{count} where id=#{id}")
     void update(Blog blog) throws Exception;
 
 }

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -22,6 +23,7 @@ public class BlogController {
     @GetMapping("/technology")
     public String toBlog(Model model) throws Exception {
         List<Blog> blogList=blogService.selectAll();
+        Collections.reverse(blogList);
         model.addAttribute("blogList",blogList);
         return "technology";
     }
@@ -39,6 +41,8 @@ public class BlogController {
     @GetMapping("/lookBlog/{id}")
     public String toLook(@PathVariable("id")Integer id,Model model) throws Exception {
         Blog blog=blogService.selectBlog(id);
+        blog.setCount(blog.getCount()+1);
+        blogService.updateBlog(blog);
         User user=userService.selectUser(blog.getUserId());
         model.addAttribute("blog",blog);
         model.addAttribute("Author",user.getName());

@@ -7,9 +7,18 @@ public class Blog {
     private String title;
     private String context;
     private Date date;
+    private int count;
     private Integer userId;
     private User user;
 
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
 
     public Integer getId() {
         return id;
@@ -65,9 +74,6 @@ public class Blog {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", context='" + context + '\'' +
-                ", date=" + date +
-                ", userId=" + userId +
-                ", user=" + user +
                 '}';
     }
 }

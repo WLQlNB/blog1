@@ -1,79 +1,19 @@
 package club.wlqzz.blog.pojo;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.util.Date;
 
+@ToString
 public class Blog {
-    private Integer id;
-    private String title;
-    private String context;
-    private Date date;
-    private int count;
-    private Integer userId;
-    private User user;
+    @Getter@Setter private Integer id;
+    @Getter@Setter private String title;
+    @Getter@Setter private String context;
+    @Getter@Setter private Date date;
+    @Getter@Setter private int count;
+    @Getter@Setter private Integer userId;
+    @Getter@Setter private User user;
 
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContext() {
-        return context;
-    }
-
-    public void setContext(String context) {
-        this.context = context;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    @Override
-    public String toString() {
-        return "Blog{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", context='" + context + '\'' +
-                '}';
-    }
 }

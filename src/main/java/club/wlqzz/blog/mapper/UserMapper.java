@@ -16,7 +16,11 @@ public interface UserMapper {
     @Select("select * from t_user where id=#{id}")
     User selectById(Integer id) throws Exception;
 
-    @Insert("insert into t_user(name,age,sex,password) values(#{name},#{age},#{sex},#{password})")
+    @Select("select * from t_user where email=#{email}")
+    User selectByEmail(String email) throws Exception;
+
+
+    @Insert("insert into t_user(name,age,sex,password,email) values(#{name},#{age},#{sex},#{password},#{email})")
     void insert(User user) throws Exception;
 
     void delete(User user) throws Exception;

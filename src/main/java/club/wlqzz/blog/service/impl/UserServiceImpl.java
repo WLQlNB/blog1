@@ -41,11 +41,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Boolean checkLogin(Integer id,String password) throws Exception {
-        User user=selectUser(id);
+    public Boolean checkLogin(Integer id,String email,String password) throws Exception {
+        User user=null;
+        if(id!=null){
+           user =selectUser(id);
+        }else if (email!=null){
+            user=userMapper.selectByEmail(email);
+        }
         password=Md5Class.stringToMd5(password);
         if (user!=null&&password.equals(user.getPassword())){
-            System.out.println("cccc"+user.getPassword());
             return true;
         }
         return false;

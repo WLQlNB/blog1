@@ -47,7 +47,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#" th:href="@{/reg}">
-                    [[${session.loginUser}!=null? ${session.loginUser.name}:'登录/注册']]
+                    [[${session.loginUser}!=null?${session.loginUser.id}:'登录/注册']]
                 </a>
                 </li>
                 <li><a href="#" th:href="@{/loginOut}">退出</a></li>

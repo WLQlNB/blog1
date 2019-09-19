@@ -26,10 +26,11 @@ public class LoginController {
 
     @PostMapping("/loginCheck")
     public String login(@RequestParam("id") Integer id,
-                        @RequestParam("password") String password,
+                        @RequestParam("password") String password,String email,
                         Map<String, Object> map, HttpSession session) throws Exception {
+
         User user = userService.selectUser(id);
-        if (userService.checkLogin(id, password)) {
+        if (userService.checkLogin(id,email, password)) {
             session.setAttribute("loginUser", user);
             return "main";
         } else {
@@ -43,17 +44,6 @@ public class LoginController {
         return "login";
     }
 
-    @GetMapping("/reg")
-    public String toReg() {
-        return "reg";
-    }
-
-    @PostMapping("/doReg")
-    public String doReg(User user, HttpSession session) throws Exception {
-        session.getAttribute("user");
-        userService.addUser(user);
-        return "login";
-    }
 
     @GetMapping(value = {"/", "/main"})
     public String toMain(Model model) throws Exception {
@@ -70,8 +60,4 @@ public class LoginController {
         return "redirect:/main";
     }
 
-    @GetMapping("/t")
-    public String t(){
-        return "t";
-    }
 }

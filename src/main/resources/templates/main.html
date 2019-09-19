@@ -174,16 +174,13 @@
             </h3>
             <div class="col-md-8 column" style=" height:80px; background-color: white; overflow:hidden;margin: 4px;">
 
-
                 <div>
                     <p th:each=" blog: ${blogList}">
                     <a th:href="@{/lookBlog/}+${blog.id}" class="">
                         [[${blog.title}]]
                     </a>
                     </p>
-
                 </div>
-
 
             </div>
 

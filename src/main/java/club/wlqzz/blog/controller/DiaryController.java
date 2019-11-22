@@ -22,31 +22,28 @@ public class DiaryController {
     private DiaryService diaryService;
 
     @GetMapping("/diary")
-    public String toDiaryPage(HttpSession session, Model model) throws Exception {
-        if(session.getAttribute("loginUser")!=null) {
-           List<Diary> diaryList= diaryService.selectAll();
-           Collections.reverse(diaryList);
-           model.addAttribute("diaryList",diaryList);
-            return "diary";
-        }
-        return "login";
+    public String toDiaryPage(Model model) throws Exception {
+        List<Diary> diaryList = diaryService.selectAll();
+        Collections.reverse(diaryList);
+        model.addAttribute("diaryList", diaryList);
+        return "diary";
     }
 
     @GetMapping("/lookDiary/{id}")
-    public String lookDiary(@PathVariable("id")Integer id,Model model) throws Exception {
-        Diary diary=diaryService.selectDiary(id);
-        model.addAttribute("diary",diary);
+    public String lookDiary(@PathVariable("id") Integer id, Model model) throws Exception {
+        Diary diary = diaryService.selectDiary(id);
+        model.addAttribute("diary", diary);
         return "lookDiary";
     }
 
     @GetMapping("/writeDiary")
-    public String writeDiary(){
+    public String writeDiary() {
         return "user/writeDiary";
     }
 
     @PostMapping("/addDiary")
-    public String addDiary(Diary diary,HttpSession session) throws Exception {
-        User user= (User) session.getAttribute("loginUser");
+    public String addDiary(Diary diary, HttpSession session) throws Exception {
+        User user = (User) session.getAttribute("loginUser");
         diary.setUserId(user.getId());
         diaryService.addDiary(diary);
         return "redirect:/diary";
@@ -72,9 +69,9 @@ public class DiaryController {
     }
 
     @GetMapping("/myDiary")
-    public String myDiaryList(HttpSession session,Model model) throws Exception {
+    public String myDiaryList(HttpSession session, Model model) throws Exception {
         User user = (User) session.getAttribute("loginUser");
-        List<Diary>diaryList=diaryService.selectAllDiary(user.getId());
+        List<Diary> diaryList = diaryService.selectAllDiary(user.getId());
         Collections.reverse(diaryList);
         model.addAttribute("diaryList", diaryList);
         return "user/diaryList";

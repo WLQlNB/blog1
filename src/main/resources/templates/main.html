@@ -10,7 +10,6 @@
             width: 100%;
             height: 100%;
         }
-
         .banner-img {
             width: 100%;
             height: auto;
@@ -80,32 +79,14 @@
 
         <div class="col-md-4 column">
             <h3>热门排行</h3>
-            <ul>
+            <ul th:each="blog : ${blogList}">
                 <li>
-                    Lorem ipsum dolor sit amet
-                </li>
-                <li>
-                    Consectetur adipiscing elit
-                </li>
-                <li>
-                    Integer molestie lorem at massa
-                </li>
-                <li>
-                    Facilisis in pretium nisl aliquet
-                </li>
-                <li>
-                    Nulla volutpat aliquam velit
-                </li>
-                <li>
-                    Faucibus porta lacus fringilla vel
-                </li>
-                <li>
-                    Aenean sit amet erat nunc
-                </li>
-                <li>
-                    Eget porttitor lorem
+                    <a th:href="@{/lookBlog/}+${blog.id}" class="">
+                        [[${blog.title}]]
+                    </a>
                 </li>
             </ul>
+
         </div>
     </div>
     <br>
@@ -172,13 +153,13 @@
             <h3>
                 最新排行
             </h3>
-            <div class="col-md-8 column" style=" height:80px; background-color: white; overflow:hidden;margin: 4px;">
+            <div class="col-md-8 column" >
 
-                <div>
+                <div style="  background-color: white; overflow:hidden;margin: 4px;">
                     <p th:each=" blog: ${blogList}">
-                    <a th:href="@{/lookBlog/}+${blog.id}" class="">
-                        [[${blog.title}]]
-                    </a>
+                        <a th:href="@{/lookBlog/}+${blog.id}" class="">
+                            [[${blog.title}]]
+                        </a>
                     </p>
                 </div>
 

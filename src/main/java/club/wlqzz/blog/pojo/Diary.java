@@ -1,15 +1,14 @@
 package club.wlqzz.blog.pojo;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
+
 import java.util.Date;
 
-@ToString
+@Data
 public class Diary {
-    @Getter@Setter private int id;
-    @Getter@Setter private String title;
-    @Getter@Setter private String context;
-    @Getter@Setter private int userId;
-    @Getter@Setter private Date date;
+    private int id;
+    private String title;
+    private String context;
+    private int userId;
+    private Date date;
 }

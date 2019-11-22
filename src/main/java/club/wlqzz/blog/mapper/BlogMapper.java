@@ -2,10 +2,11 @@ package club.wlqzz.blog.mapper;
 
 import club.wlqzz.blog.pojo.Blog;
 import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Mapper
+@Component
 public interface BlogMapper {
     @Select("select * from t_blog")
     List<Blog> selectAll() throws Exception;

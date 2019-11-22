@@ -20,6 +20,7 @@ public class BlogController {
     @Autowired
     private UserService userService;
 
+
     @GetMapping("/technology")
     public String toBlog(Model model) throws Exception {
         List<Blog> blogList=blogService.selectAll();
@@ -48,4 +49,6 @@ public class BlogController {
         model.addAttribute("Author",user.getName());
         return "/lookBlog";
     }
+
+
 }

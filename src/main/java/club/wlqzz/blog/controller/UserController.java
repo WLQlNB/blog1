@@ -3,12 +3,14 @@ package club.wlqzz.blog.controller;
 import club.wlqzz.blog.pojo.Blog;
 import club.wlqzz.blog.pojo.User;
 import club.wlqzz.blog.service.BlogService;
+import club.wlqzz.blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.Collections;
@@ -18,15 +20,15 @@ import java.util.List;
 public class UserController {
     @Autowired
     private BlogService blogService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/user")
-    public String toUserPage(HttpSession session, Model model) {
-        if (session.getAttribute("loginUser") != null) {
+    public String toUserPage(HttpSession session, Model model) throws Exception {
             User user = (User) session.getAttribute("loginUser");
+            user=userService.selectUser(user.getId());
             model.addAttribute("user", user);
             return "user/myInfor";
-        }
-        return "/login";
     }
 
     @GetMapping("/article")
@@ -62,5 +64,18 @@ public class UserController {
         if(session.getAttribute("loginUser")!=null)
             return "user/writeBlog";
         return "login";
+    }
+
+    @PostMapping("/editUserInformation")
+    public String editUserInformation(@RequestParam("userId") Integer userId,@RequestParam("userName")String userName,
+                                      @RequestParam("userAge")Integer userAge,@RequestParam("userSex")Character userSex,
+                                      @RequestParam("userEmail")String userEmail) throws Exception {
+        User user=userService.selectUser(userId);
+        user.setEmail(userEmail);
+        user.setName(userName);
+        user.setAge(userAge);
+        user.setSex(userSex);
+        userService.updateUser(user);
+        return "redirect:/main";
     }
 }

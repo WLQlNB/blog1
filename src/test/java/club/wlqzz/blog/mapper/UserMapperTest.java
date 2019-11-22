@@ -43,4 +43,10 @@ public class UserMapperTest {
     public void deleteBlog() throws Exception {
         blogMapper.delete(10);
     }
+
+    @Test
+    public void setUser() throws Exception {
+      User user= userMapper.selectUser(1,"2065795207@qq.com","e10adc3949ba59abbe56e057f20f883e");
+        System.out.println(user);
+    }
 }

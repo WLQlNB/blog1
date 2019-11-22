@@ -13,7 +13,12 @@ public interface UserService {
 
     User selectUser(Integer id) throws Exception;
 
+    User selectUser(String email) throws Exception;
+
+    User selectUser(Integer id, String email, String password) throws Exception;
+
+
     List<User> selectAll() throws Exception;
 
-    Boolean checkLogin(Integer id,String email,String password) throws Exception;
+    Boolean checkLogin(Integer id, String email, String password) throws Exception;
 }

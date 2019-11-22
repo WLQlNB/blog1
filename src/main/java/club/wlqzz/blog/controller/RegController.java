@@ -6,6 +6,7 @@ import club.wlqzz.blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -25,17 +26,21 @@ public class RegController {
     }
 
     @PostMapping("/doReg")
-    public String doReg(String email,String verificationCode,String pwd) throws Exception {
-        User user=new User();
-        user.setEmail(email);
-        user.setPassword(pwd);
-        user.setEmail(email);
-        String ans =stringRedisTemplate.opsForValue().get("verificationCode");
-        System.out.println("ans: "+ans);
-        if(ans.equals(verificationCode)){
-            userService.addUser(user);
+    public String doReg(String email, String verificationCode, String pwd, Model model) throws Exception {
+        if(userService.selectUser(email)!=null){
+            model.addAttribute("error","error");
+            return "reg";
+        }else {
+            User user=new User();
+            user.setEmail(email);
+            user.setPassword(pwd);
+            user.setEmail(email);
+            String ans =stringRedisTemplate.opsForValue().get("verificationCode");
+            if(ans.equals(verificationCode)){
+                userService.addUser(user);
+            }
+            return "login";
         }
-        return "login";
     }
 
     @GetMapping("/verification")

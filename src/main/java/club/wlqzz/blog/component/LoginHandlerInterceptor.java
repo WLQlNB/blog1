@@ -9,15 +9,17 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 登陆检查，
  */
+
 public class LoginHandlerInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        System.out.println("loginHa");
         Object user = request.getSession().getAttribute("loginUser");
-        if(user == null){
-            request.setAttribute("msg","没有权限请先登陆");
-            request.getRequestDispatcher("/login.html").forward(request,response);
+        if (user == null) {
+            request.setAttribute("msg", "没有权限请先登陆");
+            request.getRequestDispatcher("/reg.html").forward(request, response);
             return false;
-        }else{
+        } else {
             return true;
         }
 

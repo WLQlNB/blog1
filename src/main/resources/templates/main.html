@@ -79,10 +79,10 @@
 
         <div class="col-md-4 column">
             <h3>热门排行</h3>
-            <ul th:each="blog : ${blogList}">
+            <ul th:each="blog : ${ountRank}">
                 <li>
                     <a th:href="@{/lookBlog/}+${blog.id}" class="">
-                        [[${blog.title}]]
+                        [[${blog}]]
                     </a>
                 </li>
             </ul>

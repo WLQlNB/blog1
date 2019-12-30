@@ -17,4 +17,6 @@ public interface BlogService {
 
     List<Blog> selectAllUser(Integer userId) throws Exception;
 
+    Blog selectByTitle(String title) throws Exception;
+
 }

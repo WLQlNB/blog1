@@ -11,6 +11,9 @@ public interface BlogMapper {
     @Select("select * from t_blog")
     List<Blog> selectAll() throws Exception;
 
+    @Select("select * from t_blog where title=#{title}")
+    Blog selectByTitle(String title) throws Exception;
+
     @Select("select * from t_blog where user_id=#{userId}")
     List<Blog> selectAllUser(Integer user_id) throws Exception;
 

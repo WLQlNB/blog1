@@ -43,4 +43,9 @@ public class BlogServiceImpl implements BlogService {
     public List<Blog> selectAllUser(Integer userId) throws Exception {
         return blogMapper.selectAllUser(userId);
     }
+
+    @Override
+    public Blog selectByTitle(String title) throws Exception {
+        return blogMapper.selectByTitle(title);
+    }
 }

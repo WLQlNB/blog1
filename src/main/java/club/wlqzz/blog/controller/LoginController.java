@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -67,11 +68,12 @@ public class LoginController {
             zSetOperations.add("blogRank",blog.getTitle(),blog.getCount());
         }
         Set countRank= zSetOperations.reverseRange("blogRank",0,4);
+        List<Blog> countRanks=new ArrayList<>();
         for (Object string:
             countRank ) {
-            System.out.println("热门排行:"+string);
+         countRanks.add(blogService.selectByTitle(String.valueOf(string)))   ;
         }
-        model.addAttribute("countRank",countRank);
+        model.addAttribute("countRanks",countRanks);
         model.addAttribute("blogList", blogList);
         return "main";
     }

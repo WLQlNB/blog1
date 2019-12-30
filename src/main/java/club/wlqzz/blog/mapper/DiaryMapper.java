@@ -2,11 +2,11 @@ package club.wlqzz.blog.mapper;
 
 import club.wlqzz.blog.pojo.Diary;
 import org.apache.ibatis.annotations.*;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Component
+@Repository
 public interface DiaryMapper {
     @Select("select * from t_diary")
     List<Diary> selectAll() throws Exception;

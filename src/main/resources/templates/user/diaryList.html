@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
@@ -15,7 +15,7 @@
                 <div>
                     <h3>我的日记</h3>
                     <p th:each="diary: ${diaryList}">
-                        <a th:href="@{/editDiary/}+${diary.id}" class="">
+                        <a th:href="@{/user/editDiary/}+${diary.id}" class="">
                             [[${diary.title}]]
                         </a>
                     </p>

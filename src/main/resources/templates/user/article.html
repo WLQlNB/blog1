@@ -15,7 +15,7 @@
                 <div>
                     <h3>行业交流</h3>
                     <p th:each="blog: ${aList}">
-                        <a th:href="@{/editArticle/}+${blog.id}" class="">
+                        <a th:href="@{/user/editArticle/}+${blog.id}" class="">
                             [[${blog.title}]]
                         </a>
                     </p>

@@ -3,14 +3,13 @@ package club.wlqzz.blog.mapper;
 
 import club.wlqzz.blog.pojo.User;
 import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Component
+@Repository
 public interface UserMapper {
     @Select("select * from t_user")
     List<User> selectAll() throws Exception;

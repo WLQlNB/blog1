@@ -13,7 +13,7 @@
         <div class="col-md-6 column">
             <div class="jumbotron well">
                 <h4>个人资料</h4>
-                <form th:action="@{/editUserInformation}" method="post">
+                <form th:action="@{/user/editUserInformation}" method="post">
                     <div>
                         用户名：<input type="text" name="userId" th:value="${user.id}" readonly>
                     </div><br>

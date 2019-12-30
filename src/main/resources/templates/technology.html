@@ -19,7 +19,7 @@
                 </h4>
             </div>
             <br>
-            <div  class="col-md-10 column">
+            <div  class="col-md-10 column" id="context2">
                 <p th:each=" blog: ${blogList}">
                     <a th:href="@{/lookBlog/}+${blog.id}" class="">
                         [[${blog.title}]]
@@ -34,5 +34,7 @@
 
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 </body>
 </html>

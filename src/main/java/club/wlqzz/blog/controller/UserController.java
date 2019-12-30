@@ -7,16 +7,14 @@ import club.wlqzz.blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.Collections;
 import java.util.List;
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     private BlogService blogService;
@@ -50,21 +48,15 @@ public class UserController {
     @PostMapping("/updateArticle")
     public String updateArticle(Blog blog) throws Exception {
         blogService.updateBlog(blog);
-        return "redirect:/article";
+        return "redirect:/user/article";
     }
 
     @GetMapping("/deleteArticle")
     public String deleteArticle(Blog blog) throws Exception {
         blogService.deleteBlog(blog.getId());
-        return "redirect:/article";
+        return "redirect:/user/article";
     }
 
-    @GetMapping("/writeBlog")
-    public String towriteBlog(HttpSession session){
-        if(session.getAttribute("loginUser")!=null)
-            return "user/writeBlog";
-        return "login";
-    }
 
     @PostMapping("/editUserInformation")
     public String editUserInformation(@RequestParam("userId") Integer userId,@RequestParam("userName")String userName,
@@ -77,5 +69,10 @@ public class UserController {
         user.setSex(userSex);
         userService.updateUser(user);
         return "redirect:/main";
+    }
+
+    @GetMapping("/writeBlog")
+    public String towriteBlog(){
+        return "user/writeBlog";
     }
 }

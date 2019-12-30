@@ -12,7 +12,9 @@
     <div class="row clearfix">
         <div class="col-md-8 column">
             <h3>[[${blog.title}]]</h3>
-            <div>[[${blog.context}]]</div>
+            <div id="context2">
+             <span escape="false" th:utext="${blog.context}"></span>
+            </div>
             <div align="right">
                 作者：[[${Author}]] &nbsp; 访问量：[[${blog.count}]] &nbsp; 日期：[[${blog.date}]]
             </div>
@@ -74,5 +76,13 @@
 
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    content2.val(editor.txt.html(${blog.context}))
+    $(function() {
+       // content2.val(editor.txt.html('${blog.context}'))
+        $("#content2").html($("#content").text());
+    });
+</script>
 </body>
 </html>

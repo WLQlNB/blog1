@@ -21,7 +21,7 @@
             <br>
             <div class="col-md-10 column">
                 <p th:each="diary: ${diaryList}">
-                    <a th:href="@{/lookDiary/}+${diary.id}" class="">
+                    <a th:href="@{/user/lookDiary/}+${diary.id}" class="">
                         [[${diary.title}]]
                     </a>
                 </p>

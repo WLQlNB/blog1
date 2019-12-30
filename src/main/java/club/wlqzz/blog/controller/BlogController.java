@@ -35,20 +35,19 @@ public class BlogController {
         User user= (User) session.getAttribute("loginUser");
         blog.setUserId(user.getId());
         blogService.addBlog(blog);
-        return "redirect:/technology";
+       return "redirect:/technology";
     }
-
 
     @GetMapping("/lookBlog/{id}")
     public String toLook(@PathVariable("id")Integer id,Model model) throws Exception {
         Blog blog=blogService.selectBlog(id);
         blog.setCount(blog.getCount()+1);
+
         blogService.updateBlog(blog);
         User user=userService.selectUser(blog.getUserId());
         model.addAttribute("blog",blog);
         model.addAttribute("Author",user.getName());
         return "/lookBlog";
     }
-
 
 }

@@ -17,8 +17,6 @@ public interface UserService {
 
     User selectUser(Integer id, String email, String password) throws Exception;
 
-
     List<User> selectAll() throws Exception;
 
-    Boolean checkLogin(Integer id, String email, String password) throws Exception;
 }

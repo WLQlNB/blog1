@@ -50,13 +50,4 @@ public class UserServiceImpl implements UserService {
         return userMapper.selectAll();
     }
 
-    @Override
-    public Boolean checkLogin(Integer id,String email,String password) throws Exception {
-        password=Md5Class.stringToMd5(password);
-        User user=userMapper.selectUser(id,email,password);
-        if (user!=null&&password.equals(user.getPassword())){
-            return true;
-        }
-        return false;
-    }
 }

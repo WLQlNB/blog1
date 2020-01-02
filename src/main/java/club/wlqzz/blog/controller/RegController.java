@@ -20,11 +20,6 @@ public class RegController {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
-    @GetMapping("/reg")
-    public String toReg() {
-        return "reg";
-    }
-
     @PostMapping("/doReg")
     public String doReg(String email, String verificationCode, String pwd, Model model) throws Exception {
         if(userService.selectUser(email)!=null){

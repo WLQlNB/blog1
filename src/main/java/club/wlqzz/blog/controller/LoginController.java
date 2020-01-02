@@ -3,6 +3,7 @@ package club.wlqzz.blog.controller;
 import club.wlqzz.blog.pojo.Blog;
 import club.wlqzz.blog.pojo.User;
 import club.wlqzz.blog.service.BlogService;
+import club.wlqzz.blog.service.LoginService;
 import club.wlqzz.blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -28,36 +29,28 @@ public class LoginController {
     private BlogService blogService;
     @Autowired
     private StringRedisTemplate redisTemplate;
+    @Autowired
+    private LoginService loginService;
 
 
     @PostMapping("/loginCheck")
     public String login(@RequestParam("all") String all,
                         @RequestParam("password") String password,
                         Model model, HttpSession session) throws Exception {
-        User user = null;
-        String em = "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
-        String zh = "^\\d{8,}$";
-        if (all.matches(em)) {
-            user = userService.selectUser(all);
-        } else if (all.matches(zh)) {
-            user = userService.selectUser(Integer.parseInt(all));
-        }else {
-            model.addAttribute("error", "error");
-            return "login";
-        }
-        if (userService.checkLogin(user.getId(), user.getEmail(),password)) {
+        User user=loginService.checkLogin(all,password);
+        if (user!=null) {
             session.setAttribute("loginUser", user);
-            return "main";
+            return "redirect:main";
         } else {
             model.addAttribute("error", "error");
             return "login";
         }
     }
 
-    @GetMapping("/login")
-    public String toLogin() {
-        return "login";
-    }
+//    @GetMapping("/login")
+//    public String toLogin() {
+//        return "login";
+//    }
 
 
     @GetMapping(value = {"/", "/main"})

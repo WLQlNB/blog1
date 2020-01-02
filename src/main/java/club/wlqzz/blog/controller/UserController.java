@@ -71,8 +71,8 @@ public class UserController {
         return "redirect:/main";
     }
 
-    @GetMapping("/writeBlog")
+    /*@GetMapping("/writeBlog")
     public String towriteBlog(){
         return "user/writeBlog";
-    }
+    }*/
 }

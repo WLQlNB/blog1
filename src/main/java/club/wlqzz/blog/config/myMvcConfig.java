@@ -11,7 +11,9 @@ import java.util.List;
 public class myMvcConfig extends WebMvcConfigurationSupport {
     @Override
     protected void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/login").setViewName("login.html");
+        registry.addViewController("/reg").setViewName("reg.html");
+        registry.addViewController("/user/writeBlog").setViewName("user/writeBlog.html");
     }
 
     @Override
@@ -20,7 +22,7 @@ public class myMvcConfig extends WebMvcConfigurationSupport {
         super.addResourceHandlers(registry);
     }
 
-    @Override
+  /*  @Override
     public void addInterceptors(InterceptorRegistry registry) {
         List<String> includePathLists = new ArrayList<>();
         includePathLists.add("/user");
@@ -28,6 +30,6 @@ public class myMvcConfig extends WebMvcConfigurationSupport {
         includePathLists.add("/writeBlog");
         includePathLists.add("/diary");
         registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns(includePathLists);
-    }
+    }*/
 
 }

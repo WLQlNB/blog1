@@ -3,6 +3,7 @@ package club.wlqzz.blog.pojo;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Set;
 
 @Data
 public class User {
@@ -13,5 +14,6 @@ public class User {
     private String password;
     private List<Blog> blogList;
     private String email;
-
+    private Set<Role> roles;
+    private String salt;
 }

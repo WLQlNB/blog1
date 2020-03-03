@@ -1,11 +1,14 @@
 package club.wlqzz.blog.service;
 
 import club.wlqzz.blog.pojo.Blog;
+import club.wlqzz.blog.pojo.Comments;
 
 import java.util.List;
 
 public interface BlogService {
     void addBlog(Blog blog) throws Exception;
+
+    void addComments(Comments comments)throws Exception;
 
     void deleteBlog(Integer id) throws Exception;
 
@@ -18,5 +21,7 @@ public interface BlogService {
     List<Blog> selectAllUser(Integer userId) throws Exception;
 
     Blog selectByTitle(String title) throws Exception;
+
+    List<Comments> selectComments(Integer id) throws Exception;
 
 }

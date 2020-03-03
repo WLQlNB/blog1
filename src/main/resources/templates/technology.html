@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>技术交流</title>
@@ -18,14 +18,19 @@
                     博客列表
                 </h4>
             </div>
-            <br>
-            <div  class="col-md-10 column" id="context2">
-                <p th:each=" blog: ${blogList}">
-                    <a th:href="@{/lookBlog/}+${blog.id}" class="">
-                        [[${blog.title}]]
+
+            <!--            <div  class="col-md-10 column" id="context2">-->
+            <div th:each=" blog: ${blogList}">
+                <!-- <a th:href="@{/lookBlog(id=${blog.id})}" class="">
+                     [[${blog.title}]]
+                 </a>-->
+                <div style="  background-color: white; overflow:hidden;margin: 20px; padding: 20px">
+                    <a th:href="@{/lookBlog(id=${blog.id})}" class="">
+                        <span th:text="${blog.title}"/>
                     </a>
-                </p>
+                </div>
             </div>
+            <!--            </div>-->
         </div>
         <div class="col-md-4 column">
         </div>

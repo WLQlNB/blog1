@@ -22,12 +22,11 @@ public class myMvcConfig extends WebMvcConfigurationSupport {
         super.addResourceHandlers(registry);
     }
 
-  /*  @Override
+   /* @Override
     public void addInterceptors(InterceptorRegistry registry) {
         List<String> includePathLists = new ArrayList<>();
         includePathLists.add("/user");
         includePathLists.add("/user/**");
-        includePathLists.add("/writeBlog");
         includePathLists.add("/diary");
         registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns(includePathLists);
     }*/

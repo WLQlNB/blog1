@@ -30,7 +30,7 @@ public interface UserMapper {
 
     void delete(User user) throws Exception;
 
-    @Update("update t_user set name=#{name},age=#{age},sex=#{sex},email=#{email} where id=#{id}")
+    @Update("update t_user set name=#{name},age=#{age},sex=#{sex},email=#{email},password=#{password} where id=#{id}")
     void update(User user) throws Exception;
 
 }

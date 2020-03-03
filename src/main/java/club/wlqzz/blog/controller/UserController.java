@@ -70,9 +70,4 @@ public class UserController {
         userService.updateUser(user);
         return "redirect:/main";
     }
-
-    /*@GetMapping("/writeBlog")
-    public String towriteBlog(){
-        return "user/writeBlog";
-    }*/
 }

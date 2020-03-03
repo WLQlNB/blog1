@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>主页</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <style>
         img {
@@ -18,7 +16,7 @@
     </style>
 </head>
 <body style="background-color:#EBEBEB">
-<div th:replace="commons/top::topbar"/>
+<div th:replace="commons/top :: topbar"/>
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-8 column">
@@ -82,13 +80,11 @@
             <h3>热门排行</h3>
             <ul th:each="blog : ${countRanks}">
                 <li>
-                    <a th:href="@{/lookBlog/}+${blog.id}" class="">
+                    <a th:href="@{/lookBlog(id=${blog.id})}" class="">
                         <p th:text="${blog.title}"/>
                     </a>
                 </li>
             </ul>
-
-
         </div>
     </div>
     <br>
@@ -156,18 +152,19 @@
                 最新排行
             </h3>
             <div class="col-md-8 column">
-
-                <div style="  background-color: white; overflow:hidden;margin: 4px;">
-                    <p th:each=" blog: ${blogList}">
-                        <a th:href="@{/lookBlog/}+${blog.id}" class="">
-                            [[${blog.title}]]
+                <div th:each=" blog: ${blogList}">
+                    <div style="  background-color: white; overflow:hidden;margin: 20px; padding: 20px">
+                        <a th:href="@{/lookBlog(id=${blog.id})}" class="">
+                            <span th:text="${blog.title}"/>
                         </a>
-                    </p>
+                    </div>
+
+
                 </div>
 
             </div>
-
         </div>
+
         <div class="col-md-4 column">
         </div>
 
@@ -177,6 +174,5 @@
 
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 </body>
 </html>

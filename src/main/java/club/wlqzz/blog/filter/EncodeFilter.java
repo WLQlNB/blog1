@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 
 
-@Component
+//@Component
 public class EncodeFilter implements Filter {
 
     @Override

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -52,7 +52,12 @@
 
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
-<script>
+<script th:inline="javascript">
+    var errors = [[${error}]];
+    if (errors!="null"&& errors != null&& message != "") {
+        alert(errors);
+    }
+
     $("#y").click(function () {
         var emailData = {email: $("#inputEmail3").val()}
         $.get("/blog/verification",
@@ -61,11 +66,6 @@
                 alert("已发送验证码")
             })
     })
-    var error = "${error}";
-    if (error == "error") {
-        alert("该邮箱已存在");
-    }
-
 </script>
 
 </body>

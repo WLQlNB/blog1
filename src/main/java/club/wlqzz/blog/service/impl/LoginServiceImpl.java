@@ -1,7 +1,7 @@
 package club.wlqzz.blog.service.impl;
 
 import club.wlqzz.blog.mapper.UserMapper;
-import club.wlqzz.blog.pojo.Permissions;
+import club.wlqzz.blog.pojo.Permission;
 import club.wlqzz.blog.pojo.Role;
 import club.wlqzz.blog.pojo.User;
 import club.wlqzz.blog.service.LoginService;
@@ -63,9 +63,10 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public User checkLogin(String loginId, String password) throws Exception {
-        password = Md5Class.stringToMd5(password);
+    //    password = Md5Class.stringToMd5(password);
         User user = regular(loginId);
         if (user != null && password.equals(user.getPassword())) {
+            System.out.println("pppppp"+password);
             return user;
         }
         return null;

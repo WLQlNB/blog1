@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>我的文章</title>
@@ -15,7 +15,7 @@
                 <div>
                     <h3>行业交流</h3>
                     <p th:each="blog: ${aList}">
-                        <a th:href="@{/user/editArticle/}+${blog.id}" class="">
+                        <a th:href="@{/lookBlog(id=${blog.id})}" class="">
                             [[${blog.title}]]
                         </a>
                     </p>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>后台管理</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+</head>
+<body style="background-color: #EBEBEB">
+<div th:replace="commons/sideAdmin :: sidebara"/>
+<div class="container">
+    <div class="row clearfix">
+        <div style="background-color: #185598;color:white;">
+            <h3>用户个人信息</h3>
+        </div>
+        <div class="col-md-4 column">
+            <div>
+                <p>用户账号：[[${user.id}]]</p>
+                <p>用户姓名：[[${user.name}]]</p>
+                <p>用户性别：[[${user.sex}]]</p>
+                <p>用户年龄：[[${user.age}]]</p>
+                <p>用户邮箱：[[${user.email}]]</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

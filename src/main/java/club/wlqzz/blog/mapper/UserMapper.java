@@ -24,8 +24,7 @@ public interface UserMapper {
             "or(id=#{id} and password=#{password})")
     User selectUser(Integer id, String email, String password) throws Exception;
 
-
-    @Insert("insert into t_user(name,age,sex,password,email) values(#{name},#{age},#{sex},#{password},#{email})")
+    @Insert("insert into t_user(name,age,sex,password,email,type) values(#{name},#{age},#{sex},#{password},#{email},#{type})")
     void insert(User user) throws Exception;
 
     void delete(User user) throws Exception;

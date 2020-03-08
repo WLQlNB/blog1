@@ -81,7 +81,7 @@
             <ul th:each="blog : ${countRanks}">
                 <li>
                     <a th:href="@{/lookBlog(id=${blog.id})}" class="">
-                        <p th:text="${blog.title}"/>
+                        <span th:text="${blog.title}"/>
                     </a>
                 </li>
             </ul>
@@ -153,15 +153,12 @@
             </h3>
             <div class="col-md-8 column">
                 <div th:each=" blog: ${blogList}">
-                    <div style="  background-color: white; overflow:hidden;margin: 20px; padding: 20px">
+                    <div style="background-color: white; overflow:hidden;margin: 20px; padding: 20px">
                         <a th:href="@{/lookBlog(id=${blog.id})}" class="">
                             <span th:text="${blog.title}"/>
                         </a>
                     </div>
-
-
                 </div>
-
             </div>
         </div>
 

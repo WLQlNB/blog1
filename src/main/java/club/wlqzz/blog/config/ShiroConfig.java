@@ -52,6 +52,20 @@ public class ShiroConfig {
         return userRealm;
     }
 
+
+    /**
+     * 注入 securityManager
+     */
+    @Bean("securityManager")
+    public DefaultWebSecurityManager getDefaultWebSecurityManager(
+            HashedCredentialsMatcher hashedCredentialsMatcher) {
+        DefaultWebSecurityManager securityManager =
+                new DefaultWebSecurityManager();
+        securityManager.setRealm(userRealm(hashedCredentialsMatcher));
+        securityManager.setRememberMeManager(cookieRememberMeManager());
+        return securityManager;
+    }
+
     @Bean
     public ShiroFilterFactoryBean shirFilter(@Qualifier("securityManager")
                                                      DefaultWebSecurityManager securityManager) {
@@ -62,34 +76,18 @@ public class ShiroConfig {
          * perms：对应权限可访问
          * role：对应角色权限可访问
          **/
+        ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
+        bean.setSecurityManager(securityManager);
         Map<String, String> filterMap = new LinkedHashMap<>();
         filterMap.put("/user/**", "authc");
         filterMap.put("/static/**", "anon");
         filterMap.put("/**", "anon");
         filterMap.put("/logout", "logout");
-//        filterMap.put("/user/**", "perms[user:add]");
-
-        ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
-        bean.setSecurityManager(securityManager);
         bean.setSuccessUrl("/main");
         bean.setLoginUrl("/reg");
         bean.setUnauthorizedUrl("/reg");
         bean.setFilterChainDefinitionMap(filterMap);
         return bean;
-    }
-
-    /**
-     * 注入 securityManager
-     */
-    @Bean("securityManager")
-    public DefaultWebSecurityManager getDefaultWebSecurityManager(
-            HashedCredentialsMatcher hashedCredentialsMatcher) {
-
-        DefaultWebSecurityManager securityManager =
-                new DefaultWebSecurityManager();
-        securityManager.setRealm(userRealm(hashedCredentialsMatcher));
-        securityManager.setRememberMeManager(cookieRememberMeManager());
-        return securityManager;
     }
 
     @Bean
@@ -104,7 +102,9 @@ public class ShiroConfig {
     }
 
     @Bean
-    public ShiroDialect getShiiroDialect() {
+    public ShiroDialect getShiroDialect() {
         return new ShiroDialect();
     }
+
+
 }

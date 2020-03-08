@@ -10,24 +10,37 @@
 <div class="container">
     <div class="row clearfix">
         <div th:replace="commons/side::sidebar"/>
-        <div class="col-md-6 column">
+        <div class="col-md-10 column">
             <div class="jumbotron well">
                 <div>
-                    <h3>行业交流</h3>
-                    <p th:each="blog: ${aList}">
-                        <a th:href="@{/lookBlog(id=${blog.id})}" class="">
+                    <div th:each="blog: ${pageInfo.list}">
+                        <a th:href="@{/user/editArticle(id=${blog.id})}" class="">
                             [[${blog.title}]]
                         </a>
+                        <hr style=" height:2px;border:none;border-top:2px dotted #185598;"/>
+                    </div>
+                </div>
+                <div style="text-align: right">
+                    <ul class="pagination">
+                        <li><a th:href="@{/user/article}">第一页</a></li>
+                        <li>
+                            <a th:href="@{/user/article(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}">上一页</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/user/article(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">下一页</a>
+                        </li>
+                        <li><a th:href="@{/user/article(pageNum=${pageInfo.pages})}">最后一页</a></li>
+                    </ul>
+                    <p style="font-size: 15px;color: #185598;margin-top: -15px">
+                        当前 <span th:text="${pageInfo.pageNum}"></span> 页,总 <span
+                            th:text="${pageInfo.pages}"></span> 页,共 <span
+                            th:text="${pageInfo.total}"></span> 条记录
                     </p>
                 </div>
-
             </div>
-
         </div>
-
     </div>
 </div>
-
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>

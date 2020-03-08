@@ -1,4 +1,4 @@
-package club.wlqzz.blog.controller;
+package club.wlqzz.blog.controller.user;
 
 import club.wlqzz.blog.pojo.Blog;
 import club.wlqzz.blog.pojo.User;
@@ -18,13 +18,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 
@@ -63,14 +59,19 @@ public class LoginController {
         Subject currentUser = SecurityUtils.getSubject();
         if (!currentUser.isAuthenticated()) {
             User user = (User) currentUser.getPrincipal();
+            user=loginService.getUserByName(username);
             Session session = currentUser.getSession();
-            session.setAttribute("loginUser", userService.selectUser(username));
-//            session.setAttribute("loginUser", user);
+            session.setAttribute("loginUser", user);
             UsernamePasswordToken token = new UsernamePasswordToken(username, password);
             token.setRememberMe(true);
             try {
                 currentUser.login(token);
-                return "redirect:/main";
+                if("user".equals(user.getType())){
+                    return "redirect:/main";
+                }else if ("admin".equals(user.getType())){
+                    return "redirect:/admin/main";
+                }
+
             } catch (UnknownAccountException uae) {
                 log.info("There is no user with username of " + token.getPrincipal());
                 String msg = "用户名不存在";

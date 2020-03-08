@@ -3,6 +3,7 @@ package club.wlqzz.blog.shiro;
 import club.wlqzz.blog.pojo.Permission;
 import club.wlqzz.blog.pojo.Role;
 import club.wlqzz.blog.pojo.User;
+import club.wlqzz.blog.service.AdminService;
 import club.wlqzz.blog.service.LoginService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;

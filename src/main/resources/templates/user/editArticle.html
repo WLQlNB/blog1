@@ -6,7 +6,6 @@
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body style="background-color:#EBEBEB">
-
 <div th:replace="commons/top::topbar"/>
 <div class="container">
     <div class="row clearfix">
@@ -21,24 +20,21 @@
                 <div id="editor">
                     <p th:utext="${blog.context}"></p>
                 </div>
-
-
                 <textarea id="text2" name="context" style="width: 100%;height: 400px;display: none">
                 </textarea>
-                <button type="submit" class="btn btn-primary">发表</button>
-                <button type="reset" class="btn btn-primary">清空</button>
-                <a class="btn btn-primary" th:href="@{/user/deleteArticle(id=${blog.id})}">删除</a>
+                <br/>
+                <div>
+                    <button type="submit" class="btn btn-primary">发表</button>
+                    <!--                <button type="reset" class="btn btn-primary">清空</button>-->
+                    <a class="btn btn-danger" th:href="@{/user/deleteArticle(id=${blog.id})}">删除</a>
+                </div>
             </form>
-
         </div>
     </div>
 </div>
-
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../../js/wangEditor.min.js"></script>
-
-
+<script type="text/javascript" src="../js/wangEditor.min.js"></script>
 <script type="text/javascript">
     var E = window.wangEditor;
     var editor = new E('#editor');
@@ -128,7 +124,6 @@
     }
     editor.create()
     $text1.val(editor.txt.html())
-
 </script>
 </body>
 </html>

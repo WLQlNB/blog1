@@ -1,16 +1,16 @@
-package club.wlqzz.blog.controller;
+package club.wlqzz.blog.controller.user;
 
 
+import club.wlqzz.blog.pojo.Blog;
 import club.wlqzz.blog.pojo.Diary;
 import club.wlqzz.blog.pojo.User;
 import club.wlqzz.blog.service.DiaryService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.Collections;
@@ -48,7 +48,7 @@ public class DiaryController {
         User user = (User) session.getAttribute("loginUser");
         diary.setUserId(user.getId());
         diaryService.addDiary(diary);
-        return "redirect:/user/diary";
+        return "redirect:/user/myDiary";
     }
 
     @GetMapping("/editDiary/{id}")
@@ -60,21 +60,25 @@ public class DiaryController {
 
     @PostMapping("/updateDiary")
     public String updateDiary(Diary diary) throws Exception {
+        System.out.println("日记。。。"+diary);
         diaryService.updateDiary(diary);
-        return "redirect:/user/diary";
+        return "redirect:/user/myDiary";
     }
 
     @GetMapping("/deleteDiary")
     public String deleteDiary(Diary diary) throws Exception {
         diaryService.deleteDiary(diary.getId());
-        return "redirect:/user/article";
+        return "redirect:/user/myDiary";
     }
 
     @GetMapping("/myDiary")
-    public String myDiaryList(HttpSession session, Model model) throws Exception {
+    public String myDiaryList(HttpSession session, Model model,@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) throws Exception {
         User user = (User) session.getAttribute("loginUser");
+        PageHelper.startPage(pageNum, 5);
         List<Diary> diaryList = diaryService.selectAllDiary(user.getId());
         Collections.reverse(diaryList);
+        PageInfo<Diary> pageInfo = new PageInfo<>(diaryList);
+        model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("diaryList", diaryList);
         return "user/diaryList";
     }

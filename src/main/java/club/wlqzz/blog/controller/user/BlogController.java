@@ -1,10 +1,12 @@
-package club.wlqzz.blog.controller;
+package club.wlqzz.blog.controller.user;
 
 import club.wlqzz.blog.pojo.Blog;
 import club.wlqzz.blog.pojo.Comments;
 import club.wlqzz.blog.pojo.User;
 import club.wlqzz.blog.service.BlogService;
 import club.wlqzz.blog.service.UserService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,9 +25,12 @@ public class BlogController {
 
 
     @GetMapping("/technology")
-    public String toBlog(Model model) throws Exception {
+    public String toBlog(Model model,@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) throws Exception {
+        PageHelper.startPage(pageNum, 5);
         List<Blog> blogList = blogService.selectAll();
         Collections.reverse(blogList);
+        PageInfo<Blog> pageInfo = new PageInfo<>(blogList);
+        model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("blogList", blogList);
         return "technology";
     }

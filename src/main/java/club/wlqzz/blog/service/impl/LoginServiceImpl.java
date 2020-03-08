@@ -66,7 +66,6 @@ public class LoginServiceImpl implements LoginService {
     //    password = Md5Class.stringToMd5(password);
         User user = regular(loginId);
         if (user != null && password.equals(user.getPassword())) {
-            System.out.println("pppppp"+password);
             return user;
         }
         return null;

@@ -14,8 +14,9 @@ public class User implements Serializable {
     private int age;
     private String password;
     private String email;
-    private String salt;//加密密码的盐
-    private byte state;//用户状态,0:创建未认证（比如没有激活，没有输入验证码等等）--等待验证的用户 , 1:正常状态,2：用户被锁定.
+    private String type;
+    private String salt;
+    private byte state;
     private List<Blog> blogList;
     private Set<Role> roles;
 }

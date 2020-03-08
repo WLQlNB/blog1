@@ -1,4 +1,4 @@
-package club.wlqzz.blog.controller;
+package club.wlqzz.blog.controller.user;
 
 import club.wlqzz.blog.pojo.User;
 import club.wlqzz.blog.service.MailService;
@@ -27,6 +27,7 @@ public class RegController {
     public String doReg(String email, String verificationCode, String pwd) throws Exception {
         User user = new User();
         user.setEmail(email);
+        user.setType("user");
         String ans = stringRedisTemplate.opsForValue().get("verificationCode");
         if (ans.equals(verificationCode)) {
             userService.addUser(user);

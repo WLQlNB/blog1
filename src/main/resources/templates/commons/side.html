@@ -8,33 +8,28 @@
 <body >
 <div class="col-md-2 column" th:fragment="sidebar" style="background-color: #F4A460">
     <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">
+        <div class="panel-body">
                 <a th:href="@{/user/user}">我的信息</a>
-            </h3>
         </div>
         <div class="panel-body">
             <a th:href="@{/user/article}">我的文章</a>
         </div>
 
-
-
         <div class="panel-body">
             <a th:href="@{/user/myDiary}">我的日记</a>
         </div>
 
-        <div class="panel-body">
+        <!--<div class="panel-body">
             <a href="">我关注的人</a>
         </div>
         <div class="panel-footer">
             <a href="">我的问答</a>
-        </div>
+        </div>-->
         <div class="panel-body">
             <a th:href="@{/user/writeDiary}">写日记</a>
         </div>
     </div>
 </div>
-
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>

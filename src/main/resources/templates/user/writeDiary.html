@@ -2,17 +2,18 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>写博客</title>
+    <title>写日记</title>
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body style="background-color: #EBEBEB">
 <div th:replace="commons/top::topbar"/>
 <div class="container">
     <div class="row clearfix">
-        <div class="col-md-12 column">
-            <div class="page-header">
+        <div th:replace="commons/side::sidebar"/>
+        <div class="col-md-10 column">
+            <!--<div class="page-header">
                 <h1>写日记</h1>
-            </div>
+            </div>-->
             <form th:action="@{/user/addDiary}" method="post">
                 <div>
                     <input type="text" class="form-control" name="title" style="width: 100%" placeholder="输入文章标题">

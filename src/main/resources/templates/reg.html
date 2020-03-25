@@ -12,11 +12,13 @@
 <body style="background-color:#EBEBEB">
 <div class="container">
     <div class="row clearfix">
-        <div class="col-md-8 column">
+        <div class="col-md-4 column">
         </div>
         <div class="col-md-4 column">
             <form class="form-horizontal" role="form" th:action="@{doReg}" method="post">
-                <h3>欢迎注册</h3>
+                <br>
+                <h3 style="text-align: center">欢迎注册</h3>
+                <br>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">邮箱</label>
                     <div class="col-sm-10">
@@ -57,6 +59,8 @@
     if (errors!="null"&& errors != null&& message != "") {
         alert(errors);
     }
+
+
 
     $("#y").click(function () {
         var emailData = {email: $("#inputEmail3").val()}

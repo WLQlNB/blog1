@@ -12,33 +12,96 @@
 <body style="background-color: #EBEBEB">
 <div th:replace="commons/sideAdmin :: sidebara"/>
 <div class="container">
-    <div>
-        <input />
-    </div>
-
     <div class="row clearfix">
-        <div  class="col-md-2 column text-center" style="font-size: 20px;color: #EBEBEB;background: #185598;margin: 20px">
+        <div class="col-md-2 column text-center"
+             style="font-size: 20px;color: #EBEBEB;background: #185598;margin: 20px">
             <div style="padding: 20px">
                 普通用户人数
-               <p th:text="${userSum}"/>
+                <p th:text="${userSum}"/>
             </div>
         </div>
 
-        <div class="col-md-2 column text-center" style="font-size: 20px;color: #EBEBEB;background: #185598;margin: 20px">
+        <div class="col-md-2 column text-center"
+             style="font-size: 20px;color: #EBEBEB;background: #185598;margin: 20px">
             <div style="padding: 20px">
                 管理员人数
                 <p th:text="${adminSum}"/>
             </div>
         </div>
 
-        <div class="col-md-2 column text-center" style="font-size: 20px;color: #EBEBEB;background: #185598;margin: 20px">
+        <div class="col-md-2 column text-center"
+             style="font-size: 20px;color: #EBEBEB;background: #185598;margin: 20px">
             <div style="padding: 20px">
                 当前在线人数
-                <p th:text="${adminSum}"/>
+                <p th:text="${count}"/>
+                <p id="message"></p>
             </div>
         </div>
 
-</div>
+        <div class="col-md-10 column" style="text-align: right">
+            <form th:action="@{/admin/getUserInfo}" method="post">
+                <input type="text" name="id" placeholder="用户账号"/>
+                <button type="submit" class="btn btn-primary">查询用户</button>
+            </form>
+        </div>
+
+        <div class="col-md-10 column">
+            <table border="1" id="mytable"
+                   class="table table-striped table-hover table-condensed table-bordered">
+                <thead>
+                <tr>
+                    <th>
+                      用户账号
+                    </th>
+                    <th>
+                        用户姓名
+                    </th>
+                    <th>
+                       角色
+                    </th>
+                    <th>
+                        操作
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each=" user: ${pageInfo.list}">
+                    <td><p th:text="${user.id}"/></td>
+                    <td><p th:text="${user.name}"/></td>
+                    <td><p th:text="${user.type}"/></td>
+                    <td>
+                        <a th:href="@{/admin/deleteUser(id=${user.id})}">
+                            <button class="btn btn-danger" >
+                                删除用户
+                            </button>
+                        </a>
+
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+            <div style="text-align: right">
+                <ul class="pagination">
+                    <li><a th:href="@{/admin/getUser}">第一页</a></li>
+                    <li><a th:href="@{/admin/getUser(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}">上一页</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/admin/getUser(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">下一页</a>
+                    </li>
+                    <li><a th:href="@{/admin/getUser(pageNum=${pageInfo.pages})}">最后一页</a></li>
+                </ul>
+                <p style="font-size: 15px;color: #185598;margin-top: -15px">
+                    当前 <span th:text="${pageInfo.pageNum}"></span> 页,总 <span
+                        th:text="${pageInfo.pages}"></span> 页,共 <span
+                        th:text="${pageInfo.total}"></span> 条记录
+                </p>
+            </div>
+
+        </div>
+
+    </div>
 </div>
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>

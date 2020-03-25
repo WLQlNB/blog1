@@ -65,4 +65,14 @@ public class BlogController {
         blogService.addComments(comments);
         return "redirect:/main";
     }
+
+    @GetMapping("/searchBlog")
+    public String searchBlog(@RequestParam("title") String title,Model model,
+                             @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) throws Exception {
+        PageHelper.startPage(pageNum, 5);
+        List<Blog> blogList=blogService.selectBlogs(title);
+        PageInfo<Blog> pageInfo = new PageInfo<>(blogList);
+        model.addAttribute("pageInfo", pageInfo);
+        return "searchResult";
+    }
 }

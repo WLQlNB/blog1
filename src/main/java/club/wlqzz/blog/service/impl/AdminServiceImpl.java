@@ -1,6 +1,7 @@
 package club.wlqzz.blog.service.impl;
 
 import club.wlqzz.blog.mapper.AdminMapper;
+import club.wlqzz.blog.pojo.Announcement;
 import club.wlqzz.blog.pojo.Blog;
 import club.wlqzz.blog.pojo.User;
 import club.wlqzz.blog.service.AdminService;
@@ -27,6 +28,16 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<Blog> selectAllBlog() {
         return adminMapper.selectAllBlog();
+    }
+
+    @Override
+    public User selectUser(Integer id) throws Exception {
+        return adminMapper.selectUser(id);
+    }
+
+    @Override
+    public void deleteUser(Integer id) throws Exception {
+        adminMapper.deleteUser(id);
     }
 
 }

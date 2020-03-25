@@ -8,7 +8,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication
 @MapperScan("club.wlqzz.blog.mapper")
-@ServletComponentScan("club.wlqzz.blog.filter")
+@ServletComponentScan(value = {"club.wlqzz.blog.filter","club.wlqzz.blog.listener"})
 public class BlogApplication {
 
     public static void main(String[] args) {

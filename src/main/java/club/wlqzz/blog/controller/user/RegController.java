@@ -24,7 +24,7 @@ public class RegController {
     private StringRedisTemplate stringRedisTemplate;
 
     @PostMapping("/doReg")
-    public String doReg(String email, String verificationCode, String pwd) throws Exception {
+    public String doReg(String email, String verificationCode, String pwd,Model model) throws Exception {
         User user = new User();
         user.setEmail(email);
         user.setType("user");
@@ -37,8 +37,11 @@ public class RegController {
             user1.setPassword(md5Password);
             userService.updateUser(user1);
             return "login";
+        }else{
+            model.addAttribute("error","验证码错误");
+            return "reg";
         }
-       return "reg";
+
     }
 
     @GetMapping("/verification")

@@ -59,4 +59,14 @@ public class BlogServiceImpl implements BlogService {
     public List<Comments> selectComments(Integer id) throws Exception {
         return blogMapper.selectComments(id);
     }
+
+    @Override
+    public List<Blog> selectBlogLatest() throws Exception {
+        return blogMapper.selectBlogLatest();
+    }
+
+    @Override
+    public List<Blog> selectBlogs(String title) throws Exception {
+        return blogMapper.selectBlogs(title);
+    }
 }

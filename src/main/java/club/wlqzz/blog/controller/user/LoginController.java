@@ -1,7 +1,9 @@
 package club.wlqzz.blog.controller.user;
 
+import club.wlqzz.blog.pojo.Announcement;
 import club.wlqzz.blog.pojo.Blog;
 import club.wlqzz.blog.pojo.User;
+import club.wlqzz.blog.service.AnnouceService;
 import club.wlqzz.blog.service.BlogService;
 import club.wlqzz.blog.service.LoginService;
 import club.wlqzz.blog.service.UserService;
@@ -35,6 +37,10 @@ public class LoginController {
     private StringRedisTemplate redisTemplate;
     @Autowired
     private LoginService loginService;
+    @Autowired
+    private AnnouceService annouceService;
+//    @Autowired
+//    private ShiroSessionListener shiroSessionListener;
 
     private static final transient Logger log = LoggerFactory.getLogger(LoginController.class);
 
@@ -102,9 +108,9 @@ public class LoginController {
 
     @GetMapping(value = {"/", "/main"})
     public String toMain(Model model) throws Exception {
-        List<Blog> blogList = blogService.selectAll();
+        List<Blog> blogList1 = blogService.selectAll();
         ZSetOperations zSetOperations = redisTemplate.opsForZSet();
-        for (Blog blog : blogList) {
+        for (Blog blog : blogList1) {
             zSetOperations.add("blogRank", blog.getTitle(), blog.getCount());
         }
         Set countRank = zSetOperations.reverseRange("blogRank", 0, 4);
@@ -113,6 +119,9 @@ public class LoginController {
                 countRank) {
             countRanks.add(blogService.selectByTitle(String.valueOf(string)));
         }
+        List<Blog>blogList=blogService.selectBlogLatest();
+        List<Announcement>announcements=annouceService.selectAll();
+        model.addAttribute("announcements", announcements);
         model.addAttribute("countRanks", countRanks);
         model.addAttribute("blogList", blogList);
         return "main";
@@ -125,4 +134,10 @@ public class LoginController {
         return "redirect:/main";
     }
 
+   @GetMapping("/lookAnnounce")
+    public String lookAnnounce(Integer id,Model model ) throws Exception {
+        Announcement announcement=annouceService.selectAnnoucement(id);
+        model.addAttribute("announcement",announcement);
+        return "lookAnnounce";
+   }
 }

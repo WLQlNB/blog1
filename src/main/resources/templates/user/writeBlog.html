@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>写博客</title>
+    <title>写文章</title>
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body style="background-color: #EBEBEB">
@@ -10,9 +10,9 @@
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">
-            <div class="page-header">
-                <h1>写博客</h1>
-            </div>
+            <!--<div class="page-header">
+                <h1>写文章</h1>
+            </div>-->
             <form th:action="@{/blog}" method="post">
                 <div>
                     <input type="text" th:id="caption" class="form-control" name="title" style="width: 100%"

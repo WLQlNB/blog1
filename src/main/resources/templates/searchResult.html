@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>技术交流</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="background-color: #EBEBEB">
+<div th:replace="commons/top::topbar"/>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-1 column">
+        </div>
+        <div class="col-md-10 column">
+            <div th:each=" blog: ${pageInfo.list}">
+                <div style="  background-color: white; overflow:hidden;margin: 20px; padding: 20px">
+                    <a th:href="@{/lookBlog(id=${blog.id})}" class="">
+                        <span th:text="${blog.title}"/>
+                    </a>
+                </div>
+            </div>
+         <!--   <div style="text-align: right">
+                <ul class="pagination">
+                    <li><a th:href="@{/searchBlog}">第一页</a></li>
+                    <li><a th:href="@{/searchBlog(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}">上一页</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/searchBlog(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">下一页</a>
+                    </li>
+                    <li><a th:href="@{/searchBlog(pageNum=${pageInfo.pages})}">最后一页</a></li>
+                </ul>
+                <p style="font-size: 15px;color: #185598;margin-top: -15px">
+                    当前 <span th:text="${pageInfo.pageNum}"></span> 页,总
+                    <span th:text="${pageInfo.pages}"></span> 页,共
+                    <span th:text="${pageInfo.total}"></span> 条记录
+                </p>
+            </div>
+-->
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>

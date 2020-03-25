@@ -55,7 +55,6 @@ public class BlogManageController {
         PageInfo<Blog> pageInfo = new PageInfo<>(blogList);
         model.addAttribute("pageInfo", pageInfo);
         return "admin/blogManage";
-
     }
 
 

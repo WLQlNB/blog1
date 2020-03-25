@@ -80,6 +80,8 @@ public class ShiroConfig {
         bean.setSecurityManager(securityManager);
         Map<String, String> filterMap = new LinkedHashMap<>();
         filterMap.put("/user/**", "authc");
+        filterMap.put("/admin/**", "authc");
+        filterMap.put("/comment/**", "authc");
         filterMap.put("/static/**", "anon");
         filterMap.put("/**", "anon");
         filterMap.put("/logout", "logout");
@@ -105,6 +107,5 @@ public class ShiroConfig {
     public ShiroDialect getShiroDialect() {
         return new ShiroDialect();
     }
-
 
 }

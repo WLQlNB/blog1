@@ -72,23 +72,42 @@
                     </div>
                 </div>
                 <div class="col-md-4 column">
+                    <div class="text-center" style="background: #185598; color: #EBEBEB">
+                        <h3  >热门排行</h3>
+                    </div>
+
+                    <ul th:each="blog : ${countRanks}">
+                        <li>
+                            <a th:href="@{/lookBlog(id=${blog.id})}" class="">
+                                <span th:text="${blog.title}"/>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-
         <div class="col-md-4 column">
-            <h3>热门排行</h3>
-            <ul th:each="blog : ${countRanks}">
-                <li>
-                    <a th:href="@{/lookBlog(id=${blog.id})}" class="">
-                        <span th:text="${blog.title}"/>
-                    </a>
-                </li>
-            </ul>
+            <div class="text-center" style="background: #185598; color: #EBEBEB">
+                <h3>公告</h3>
+            </div>
+            <div style="background-color: white; width: 100%;height: 200px; overflow:auto;" >
+                <br>
+                <ul th:each="announce:${announcements}">
+                    <li>
+                        <a th:href="@{/lookAnnounce(id=${announce.id})}" class="">
+                            <span th:text="${announce.title}"/>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
         </div>
+
     </div>
     <br>
-    <div class="row clearfix">
+   <!-- <div class="row clearfix">
         <div class="col-md-12 column">
             <div class="row">
                 <div class="col-md-4">
@@ -144,7 +163,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 
     <div class="row clearfix">
         <div class="col-md-12 column">

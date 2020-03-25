@@ -24,8 +24,9 @@ public class DiaryController {
     private DiaryService diaryService;
 
     @GetMapping("/diary")
-    public String toDiaryPage(Model model) throws Exception {
-        List<Diary> diaryList = diaryService.selectAll();
+    public String toDiaryPage(HttpSession session,Model model) throws Exception {
+       User user= (User) session.getAttribute("loginUser");
+        List<Diary> diaryList = diaryService.selectAllDiary(user.getId());
         Collections.reverse(diaryList);
         model.addAttribute("diaryList", diaryList);
         return "diary";
@@ -60,7 +61,6 @@ public class DiaryController {
 
     @PostMapping("/updateDiary")
     public String updateDiary(Diary diary) throws Exception {
-        System.out.println("日记。。。"+diary);
         diaryService.updateDiary(diary);
         return "redirect:/user/myDiary";
     }

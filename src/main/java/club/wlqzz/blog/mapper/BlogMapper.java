@@ -22,11 +22,17 @@ public interface BlogMapper {
     @Select("select * from t_blog where id=#{id}")
     Blog selectById(Integer id) throws Exception;
 
+    @Select("select * from t_blog order by date desc limit 5")
+    List<Blog> selectBlogLatest() throws Exception;
+
     @Select("select * from t_comments where blog_id=#{blogId}")
     List<Comments> selectComments(Integer id) throws Exception;
 
     @Select("select * from t_reply where blog_id=#{blogId}")
     Reply selectReply(Integer id)throws Exception;
+
+    @Select("select * from t_blog where title like concat('%',#{title},'%')")
+    List<Blog>selectBlogs(String title)throws Exception;
 
     @Insert("insert into t_blog(title,context,user_id) values(#{title},#{context},#{userId})")
     void insert(Blog blog) throws Exception;

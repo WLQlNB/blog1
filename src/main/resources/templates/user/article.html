@@ -13,6 +13,7 @@
         <div class="col-md-10 column">
             <div class="jumbotron well">
                 <div>
+                    <hr style=" height:2px;border:none;border-top:2px dotted #185598;"/>
                     <div th:each="blog: ${pageInfo.list}">
                         <a th:href="@{/user/editArticle(id=${blog.id})}" class="">
                             [[${blog.title}]]

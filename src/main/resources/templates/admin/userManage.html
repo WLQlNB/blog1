@@ -66,7 +66,11 @@
                 </thead>
                 <tbody>
                 <tr th:each=" user: ${pageInfo.list}">
-                    <td><p th:text="${user.id}"/></td>
+                    <td>
+                        <a th:href="@{/admin/searchUser(id=${user.id})}">
+                             <p th:text="${user.id}"/>
+                        </a>
+                    </td>
                     <td><p th:text="${user.name}"/></td>
                     <td><p th:text="${user.type}"/></td>
                     <td>

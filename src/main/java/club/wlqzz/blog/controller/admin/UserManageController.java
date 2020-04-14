@@ -39,7 +39,6 @@ public class UserManageController {
 
         HttpSession session = request.getSession();
         Object count=session.getServletContext().getAttribute("count");
-        System.out.println("count......"+count);
         int userSum=adminService.selectUserCount("user");
         int adminSum=adminService.selectUserCount("admin");
         PageHelper.startPage(pageNum, 5);
@@ -79,5 +78,11 @@ public class UserManageController {
         return "redirect:/admin/getUser";
    }
 
+   @GetMapping("/admin/searchUser")
+    public String searchUser(Integer id,Model model) throws Exception {
+        User user=userService.selectUser(id);
+        model.addAttribute("user",user);
+        return "admin/userInfo";
+   }
 
 }

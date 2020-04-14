@@ -26,7 +26,7 @@
                             用户姓名
                         </th>
                         <th>
-                           角色
+                            角色
                         </th>
                         <th>
                             操作
@@ -35,7 +35,11 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td><p th:text="${user.id}"/></td>
+                        <td>
+                            <a th:href="@{/admin/searchUser(id=${user.id})}">
+                                <p th:text="${user.id}"/>
+                            </a>
+                        </td>
                         <td><p th:text="${user.name}"/></td>
                         <td><p th:text="${user.type}"/></td>
                         <td>

@@ -13,6 +13,7 @@
         <div class="col-md-10 column">
             <div class="jumbotron well">
                 <div>
+                    <hr style=" height:2px;border:none;border-top:2px dotted #185598;"/>
                     <p th:each="diary: ${diaryList}">
                         <a th:href="@{/user/editDiary/}+${diary.id}" class="">
                             [[${diary.title}]]

@@ -14,7 +14,7 @@
     <div class="row clearfix">
         <div class="col-md-4 column">
         </div>
-        <div class="col-md-4 column">
+        <div class="col-md-4 column" style="height: 500px">
             <form class="form-horizontal" role="form" th:action="@{doReg}" method="post">
                 <br>
                 <h3 style="text-align: center">欢迎注册</h3>
@@ -59,9 +59,7 @@
     if (errors!="null"&& errors != null&& message != "") {
         alert(errors);
     }
-
-
-
+    
     $("#y").click(function () {
         var emailData = {email: $("#inputEmail3").val()}
         $.get("/blog/verification",

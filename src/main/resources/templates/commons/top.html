@@ -14,21 +14,33 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" th:href="@{/main}">首页</a>
+            <a class="navbar-brand" th:href="@{/main}">
+                <span style="color: #EBEBEB">首页</span>
+            </a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                <li><a th:href="@{/technology}">行业交流</a></li>
-<!--                <li><a href="#">文化交流</a></li>-->
-                <li><a th:href="@{/user/diary}">成长</a></li>
-              <!--  <li><a href="#">健康</a></li>
-                <li><a href="#">问答</a></li>-->
-                <li><a th:href="@{/user/writeBlog}">写文章</a></li>
-<!--                <li><a href="#">留言</a></li>-->
+                    <li>
+                        <a th:href="@{/technology}">
+                        <span style="color: #EBEBEB">行业交流</span>
+                        </a>
+                    </li>
                 <li>
-                    <a th:href="@{/user/user}">关于我</a>
+                    <a th:href="@{/user/diary}">
+                        <span style="color: #EBEBEB">成长</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/user/writeBlog}">
+                        <span style="color: #EBEBEB">写文章</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/user/user}">
+                        <span style="color: #EBEBEB">关于我</span>
+                    </a>
                 </li>
                 </li>
             </ul>
@@ -41,7 +53,7 @@
             </form>
 
             <ul class="nav navbar-nav navbar-right">
-                <li style="margin-top: 13px;">
+                <li style="margin-top: 14px;">
                     <p th:if="${session.loginUser}!=null">
                         <a  th:href="@{/user/user}">
                           <span style="color: #EBEBEB" th:text="${session.loginUser.id}"></span> <!-- [[${session.loginUser.id}]]-->
@@ -53,13 +65,17 @@
                         </a>
                     </p>
                 </li>
-                <li><a th:href="@{/loginOut}">退出</a></li>
+                <li>
+                    <a th:href="@{/loginOut}">
+                        <span style="color: #EBEBEB">退出</span>
+                    </a>
+                </li>
             </ul>
         </div>
 
     </div>
 </nav>
-<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

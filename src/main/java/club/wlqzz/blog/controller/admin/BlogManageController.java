@@ -57,5 +57,11 @@ public class BlogManageController {
         return "admin/blogManage";
     }
 
+    @GetMapping("/admin/lookBlog")
+    public String lookBlog(Integer id,Model model) throws Exception {
+        Blog blog=blogService.selectBlog(id);
+        model.addAttribute("blog",blog);
+        return "admin/lookArticle";
+    }
 
 }

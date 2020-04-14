@@ -31,18 +31,6 @@ public class UserMapperTest {
         }
     }
 
-    @Test
-    public void selectBlogById() throws Exception {
-        Blog blog=blogMapper.selectById(1);
-        System.out.println("我的博客");
-        System.out.println(blog);
-        System.out.println(blog.getUserId());
-    }
-
-    @Test
-    public void deleteBlog() throws Exception {
-        blogMapper.delete(10);
-    }
 
     @Test
     public void setUser() throws Exception {

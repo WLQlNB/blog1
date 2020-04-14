@@ -39,8 +39,6 @@ public class LoginController {
     private LoginService loginService;
     @Autowired
     private AnnouceService annouceService;
-//    @Autowired
-//    private ShiroSessionListener shiroSessionListener;
 
     private static final transient Logger log = LoggerFactory.getLogger(LoginController.class);
 
@@ -65,6 +63,7 @@ public class LoginController {
         Subject currentUser = SecurityUtils.getSubject();
         if (!currentUser.isAuthenticated()) {
             User user = (User) currentUser.getPrincipal();
+            System.out.println("user..........."+user);
             user=loginService.getUserByName(username);
             Session session = currentUser.getSession();
             session.setAttribute("loginUser", user);
@@ -114,15 +113,10 @@ public class LoginController {
             zSetOperations.add("blogRank", blog.getTitle(), blog.getCount());
         }
         Set countRank = zSetOperations.reverseRange("blogRank", 0, 4);
-        List<Blog> countRanks = new ArrayList<>();
-        for (Object string :
-                countRank) {
-            countRanks.add(blogService.selectByTitle(String.valueOf(string)));
-        }
         List<Blog>blogList=blogService.selectBlogLatest();
         List<Announcement>announcements=annouceService.selectAll();
         model.addAttribute("announcements", announcements);
-        model.addAttribute("countRanks", countRanks);
+        model.addAttribute("countRanks", countRank);
         model.addAttribute("blogList", blogList);
         return "main";
     }

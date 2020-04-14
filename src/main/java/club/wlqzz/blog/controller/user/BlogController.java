@@ -45,8 +45,13 @@ public class BlogController {
     }
 
     @GetMapping("/lookBlog")
-    public String toLook(Integer id, Model model) throws Exception {
-        Blog blog = blogService.selectBlog(id);
+    public String toLook(Integer id,String title, Model model) throws Exception {
+        Blog blog=null;
+        if(id!=null){
+            blog = blogService.selectBlog(id);
+        }else {
+            blog=blogService.selectByTitle(title);
+        }
         blog.setCount(blog.getCount() + 1);
         blogService.updateBlog(blog);
         User user = userService.selectUser(blog.getUserId());

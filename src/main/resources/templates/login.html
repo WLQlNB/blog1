@@ -10,10 +10,10 @@
     <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
 </head>
 <body style="background-color: #EBEBEB">
-<div class="container">
-    <form class="form-horizontal" id="loginform" action="main.html" th:action="@{loginCheck}" method="post">
+<div class="container" >
+    <form class="form-horizontal" id="loginform" th:action="@{loginCheck}" method="post">
         <div class="text-center">
-            <h1>博客系统</h1>
+            <h1>欢迎登录</h1>
         </div>
         <br>
         <div class="form-group">
@@ -28,7 +28,7 @@
                 <input type="password" class="form-control" id="inputPassword3" name="password" placeholder="密码">
             </div>
         </div>
-        <div class="form-group">
+       <!-- <div class="form-group">
             <div class="col-sm-offset-5 col-sm-10">
                 <div class="checkbox">
                     <label>
@@ -36,11 +36,11 @@
                     </label>
                 </div>
             </div>
-        </div>
+        </div>-->
 
         <div class="form-group">
             <div class="col-sm-offset-5 col-sm-10">
-                <button type="submit" class="btn btn-primary">登录</button>
+                <button type="submit" class="btn btn-primary" style="width: 160px">登录</button>
             </div>
         </div>
     </form>

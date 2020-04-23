@@ -6,7 +6,6 @@ import club.wlqzz.blog.pojo.User;
 import club.wlqzz.blog.service.AnnouceService;
 import club.wlqzz.blog.service.BlogService;
 import club.wlqzz.blog.service.LoginService;
-import club.wlqzz.blog.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.session.Session;
@@ -20,8 +19,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -29,8 +26,6 @@ import java.util.Set;
 @Controller
 public class LoginController {
 
-    @Autowired
-    private UserService userService;
     @Autowired
     private BlogService blogService;
     @Autowired
@@ -63,7 +58,6 @@ public class LoginController {
         Subject currentUser = SecurityUtils.getSubject();
         if (!currentUser.isAuthenticated()) {
             User user = (User) currentUser.getPrincipal();
-            System.out.println("user..........."+user);
             user=loginService.getUserByName(username);
             Session session = currentUser.getSession();
             session.setAttribute("loginUser", user);

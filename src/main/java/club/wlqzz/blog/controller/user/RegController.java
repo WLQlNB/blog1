@@ -28,8 +28,21 @@ public class RegController {
         User user = new User();
         user.setEmail(email);
         user.setType("user");
+        user.setPassword(pwd);
         String ans = stringRedisTemplate.opsForValue().get("verificationCode");
-        if (ans.equals(verificationCode)) {
+        if(email==null||email==""||email=="null"){
+            model.addAttribute("error","请输入邮箱号！");
+            return "reg";
+        }
+        if (userService.selectUser(email)!= null) {
+            model.addAttribute("error", "该邮箱号已经存在");
+            return "reg";
+        }
+        if(user.getPassword()==null||user.getPassword()==""||user.getPassword()=="null"){
+            model.addAttribute("error","请输入密码！");
+            return "reg";
+        }
+        if (verificationCode!=null&&ans!=null&&ans.equals(verificationCode)) {
             userService.addUser(user);
             User user1=userService.selectUser(email);
             ByteSource credentialsSalt = ByteSource.Util.bytes(String.valueOf(user1.getId()));
@@ -46,14 +59,19 @@ public class RegController {
 
     @GetMapping("/verification")
     public String Verification(@RequestParam(value = "email") String email, Model model) throws Exception {
-        if (userService.selectUser(email) != null) {
-            model.addAttribute("error", "该邮箱号已被注册");
+      /* User user=userService.selectUser(email);
+        if (user!= null) {
+            model.addAttribute("error", "该邮箱号已经存在");
+            System.out.println("该邮箱号已被注册......");
             return "reg";
-        }
-        String checkCode = String.valueOf(new Random().nextInt(899999) + 100000);
-        stringRedisTemplate.opsForValue().set("verificationCode", checkCode, 300, TimeUnit.SECONDS);
-        String message = "您的注册验证码为：" + checkCode + "有效时间5分钟";
-        mailService.sendMail(email, "注册验证码", message);
-        return "reg";
+        }else {*/
+            String checkCode = String.valueOf(new Random().nextInt(899999) + 100000);
+            stringRedisTemplate.opsForValue().set("verificationCode", checkCode, 300, TimeUnit.SECONDS);
+            String message = "您的注册验证码为：" + checkCode + "有效时间5分钟";
+            mailService.sendMail(email, "注册验证码", message);
+            System.out.println("注册验证码......");
+            return "reg";
+//        }
+
     }
 }

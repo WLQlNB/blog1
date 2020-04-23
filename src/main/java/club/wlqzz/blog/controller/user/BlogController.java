@@ -68,7 +68,7 @@ public class BlogController {
         comments.setBlogId(id);
         comments.setUserId(user.getId());
         blogService.addComments(comments);
-        return "redirect:/main";
+        return "redirect:/technology";
     }
 
     @GetMapping("/searchBlog")

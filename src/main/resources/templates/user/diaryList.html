@@ -14,12 +14,12 @@
             <div class="jumbotron well">
                 <div>
                     <hr style=" height:2px;border:none;border-top:2px dotted #185598;"/>
-                    <p th:each="diary: ${diaryList}">
+                    <div th:each="diary: ${diaryList}">
                         <a th:href="@{/user/editDiary/}+${diary.id}" class="">
                             [[${diary.title}]]
                         </a>
                     <hr style=" height:2px;border:none;border-top:2px dotted #185598;"/>
-                    </p>
+                    </div>
                 </div>
                 <div style="text-align: right">
                     <ul class="pagination">

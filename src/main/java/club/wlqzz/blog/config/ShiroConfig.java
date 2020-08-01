@@ -22,14 +22,14 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig {
 
-    @Value("${spring.redis.host}")
+   /* @Value("${spring.redis.host}")
     private String host;
     @Value("${spring.redis.port}")
     private int port;
     @Value("${spring.redis.timeout}")
     private int timeout;
     @Value("${spring.redis.password}")
-    private String password;
+    private String password;*/
 
     private static final Logger logger = LoggerFactory.getLogger(ShiroConfig.class);
 

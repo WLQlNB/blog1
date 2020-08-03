@@ -69,7 +69,6 @@ public class RegController {
             stringRedisTemplate.opsForValue().set("verificationCode", checkCode, 300, TimeUnit.SECONDS);
             String message = "您的注册验证码为：" + checkCode + "有效时间5分钟";
             mailService.sendMail(email, "注册验证码", message);
-            System.out.println("注册验证码......");
             return "reg";
 //        }
 

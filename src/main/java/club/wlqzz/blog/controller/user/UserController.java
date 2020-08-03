@@ -78,6 +78,6 @@ public class UserController {
         user.setAge(userAge);
         user.setSex(userSex);
         userService.updateUser(user);
-        return "redirect:/main";
+        return "redirect:/user/user";
     }
 }

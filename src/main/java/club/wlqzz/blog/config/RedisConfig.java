@@ -10,6 +10,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 
 @Configuration
 public class RedisConfig extends CachingConfigurerSupport {
+
     @Autowired
     private RedisConnectionFactory redisConnectionFactory;
 

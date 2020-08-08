@@ -80,4 +80,9 @@ public class BlogController {
         model.addAttribute("pageInfo", pageInfo);
         return "searchResult";
     }
+
+    @PutMapping("/upload/img")
+    public String uploadImg(){
+        return "";
+    }
 }

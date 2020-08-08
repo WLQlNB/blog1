@@ -58,7 +58,8 @@
                         </a>
                     </td>
                     <td>
-                       [[${blog.date}]]
+                        <span th:text="${#dates.format(blog.date,'yyyy-MM-dd')}"></span>
+                      <!-- [[${blog.date}]]-->
                     </td>
                 </tr>
 

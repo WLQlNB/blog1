@@ -17,7 +17,6 @@ import java.util.Collections;
 import java.util.List;
 
 @Controller
-@RequestMapping("/user")
 public class UserController {
     @Autowired
     private BlogService blogService;
@@ -26,7 +25,7 @@ public class UserController {
     @Autowired
     private RedisTemplate redisTemplate;
 
-    @GetMapping("/user")
+    @GetMapping("/user/user")
     public String toUserPage(HttpSession session, Model model) throws Exception {
             User user = (User) session.getAttribute("loginUser");
             user=userService.selectUser(user.getId());
@@ -34,7 +33,7 @@ public class UserController {
             return "user/myInfor";
     }
 
-    @GetMapping("/article")
+    @GetMapping("/user/article")
     public String lookMyArticle(HttpSession session, Model model,@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) throws Exception {
         User user = (User) session.getAttribute("loginUser");
         PageHelper.startPage(pageNum, 5);
@@ -46,20 +45,20 @@ public class UserController {
         return "user/article";
     }
 
-    @GetMapping("/editArticle")
+    @GetMapping("/user/editArticle")
     public String editArticle(Integer id, Model model) throws Exception {
         Blog blog = blogService.selectBlog(id);
         model.addAttribute("blog", blog);
         return "user/editArticle";
     }
 
-    @PostMapping("/updateArticle")
+    @PostMapping("/user/updateArticle")
     public String updateArticle(Blog blog) throws Exception {
         blogService.updateBlog(blog);
         return "redirect:/user/article";
     }
 
-    @GetMapping("/deleteArticle")
+    @GetMapping("/user/deleteArticle")
     public String deleteArticle(Integer id) throws Exception {
         Blog blog=blogService.selectBlog(id);
         redisTemplate.opsForZSet().remove("blogRank",blog.getTitle());
@@ -68,10 +67,12 @@ public class UserController {
     }
 
 
-    @PostMapping("/editUserInformation")
+    @PutMapping("/user/editUserInformation")
     public String editUserInformation(@RequestParam("userId") Integer userId,@RequestParam("userName")String userName,
                                       @RequestParam("userAge")Integer userAge,@RequestParam("userSex")Character userSex,
                                       @RequestParam("userEmail")String userEmail) throws Exception {
+        System.out.println("put............");
+
         User user=userService.selectUser(userId);
         user.setEmail(userEmail);
         user.setName(userName);

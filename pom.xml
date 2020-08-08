@@ -104,6 +104,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <!--统计实时人数-->
@@ -183,13 +184,6 @@
             <version>1.9.22</version>
         </dependency>
 
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.alibaba/fastjson &ndash;&gt;
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.62</version>
-        </dependency>-->
-
         <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper-spring-boot-starter -->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
@@ -205,7 +199,17 @@
             <version>5.1.11</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>3.5.1</version>
+        </dependency>
 
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>4.5.0</version>
+        </dependency>
 
     </dependencies>
 

@@ -1,7 +1,9 @@
 package club.wlqzz.blog.config;
 
 import club.wlqzz.blog.component.LoginHandlerInterceptor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.filter.HttpPutFormContentFilter;
 import org.springframework.web.servlet.config.annotation.*;
 
 import java.util.ArrayList;
@@ -11,7 +13,7 @@ import java.util.List;
 public class myMvcConfig extends WebMvcConfigurationSupport {
     @Override
     protected void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/login").setViewName("login.html");
+        registry.addViewController("/login").setViewName("login");
         registry.addViewController("/reg").setViewName("reg.html");
         registry.addViewController("/user/writeBlog").setViewName("user/writeBlog.html");
     }

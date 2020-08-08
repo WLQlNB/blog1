@@ -37,22 +37,6 @@ public class LoginController {
 
     private static final transient Logger log = LoggerFactory.getLogger(LoginController.class);
 
-/*
-    @PostMapping("/loginCheck")
-    public String login(String username,
-                        @RequestParam("password") String password,
-                        Model model, HttpSession session) throws Exception {
-        User user=loginService.checkLogin(username,password);
-        System.out.println("user.............."+user);
-        if (user!=null) {
-            session.setAttribute("loginUser", user);
-            return "redirect:main";
-        } else {
-            model.addAttribute("error", "error");
-            return "login";
-        }
-    }*/
-
     @PostMapping("/loginCheck")
     public String login(String username, String password, Model model) throws Exception {
         Subject currentUser = SecurityUtils.getSubject();

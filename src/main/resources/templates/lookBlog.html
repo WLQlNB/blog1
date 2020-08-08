@@ -15,7 +15,7 @@
              <p th:utext="${blog.context}"></p>
             </div>
             <div align="right">
-                作者：[[${Author}]] &nbsp; 访问量：[[${blog.count}]] &nbsp; 日期：[[${blog.date}]]
+                作者：[[${Author}]] &nbsp; 访问量：[[${blog.count}]] &nbsp; 日期：[[${#dates.format(blog.date,'yyyy-MM-dd')}]]
             </div>
             <div>
                 <form th:action="@{/comment/}+${blog.id}" method="post">
